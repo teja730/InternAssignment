@@ -1,5 +1,8 @@
 
+import copy
 class fly():
+    
+    
     def __init__(self,a,b):
         self.start=a
         self.stop=b
@@ -18,32 +21,34 @@ def gos(fly):
         return
     #checking whether the final point is in +ve or -ve direction and the further point is occupied or not
     #+ve direction of x
-    if (fly.present[0] > fly.stop[0] and memo[fly.present[0]+1][fly.present[1]][fly.present[2]] ):
+    if (fly.present[0] < fly.stop[0] and memo[fly.present[0]+1][fly.present[1]][fly.present[2]] ):
         memo[fly.present[0]][fly.present[1]][fly.present[2]] =True
         fly.present[0]+=1
     #-ve direction of x
-    elif (fly.present[0] < fly.stop[0] and memo[fly.present[0]-1][fly.present[1]][fly.present[2]] ):
+    elif (fly.present[0] > fly.stop[0] and memo[fly.present[0]-1][fly.present[1]][fly.present[2]] ):
         memo[fly.present[0]][fly.present[1]][fly.present[2]] =True
         fly.present[0]-=1
     
     #+ve direction of y
-    if (fly.present[1] > fly.stop[1] and memo[fly.present[0]][fly.present[1]+1][fly.present[2]] ):
+    elif (fly.present[1] < fly.stop[1] and memo[fly.present[0]][fly.present[1]+1][fly.present[2]] ):
         memo[fly.present[0]][fly.present[1]][fly.present[2]] =True
         fly.present[1]+=1
     #-ve direction of y
-    elif (fly.present[1] < fly.stop[1] and memo[fly.present[0]][fly.present[1]-1][fly.present[2]] ):
+    elif (fly.present[1] > fly.stop[1] and memo[fly.present[0]][fly.present[1]-1][fly.present[2]] ):
         memo[fly.present[0]][fly.present[1]][fly.present[2]] =True
         fly.present[1]-=1
         
     #+ve direction of z
-    if (fly.present[2] > fly.stop[2] and memo[fly.present[0]][fly.present[1]][fly.present[2]+1] ):
+    elif (fly.present[2] < fly.stop[2] and memo[fly.present[0]][fly.present[1]][fly.present[2]+1] ):
         memo[fly.present[0]][fly.present[1]][fly.present[2]] =True
         fly.present[2]+=1
     #-ve direction of z
-    elif (fly.present[2] < fly.stop[2] and memo[fly.present[0]][fly.present[1]][fly.present[2]-1] ):
+    elif (fly.present[2] > fly.stop[2] and 
+    memo[fly.present[0]][fly.present[1]][fly.present[2]-1] ):
         memo[fly.present[0]][fly.present[1]][fly.present[2]] =True
         fly.present[2]-=1
     
+    print (fly.present)
     memo[fly.present[0]][fly.present[1]][fly.present[2]] =False
     minpoint=copy.copy(fly.present)
     fly.minp.append(minpoint)
