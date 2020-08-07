@@ -1,2 +1,2 @@
 # InternAssignment
-For the third one, install matplot lib
+For the third.py, install matplot lib
