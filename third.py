@@ -1,5 +1,9 @@
 
+from mpl_toolkits import mplot3d
+import numpy as np
+import matplotlib.pyplot as plt
 import copy
+import random
 class fly():
     
     
@@ -74,7 +78,10 @@ def minPath(args):
     for flie in flies:
         minpathlist.append(flie.minp)
     return minpathlist
+    
+    
 rows,cols,height=(101,101,101)
+grid=[[[random.randint(0,100) for i in range(cols)] for j in range(rows)] for k in range(height)]
 memo=[[[True for i in range(cols)] for j in range(rows)] for k in range(height)]
 points=[]
 sets=int(input("Enter the number of sets:"))
@@ -95,9 +102,29 @@ for i in range(sets):
 #d=[4,6,9]
 #points1= [[a,b],[c,d]]
 #print("points1 -", points1)
-print("points -", points)
-
+#print("points -", points)
 list =minPath(points)
+
+fig = plt.figure()
+ax = fig.add_subplot(111,projection='3d')
+ax.set_xlabel('x-axis')
+ax.set_ylabel('y-axis')
+ax.set_zlabel('z-axis')
+colors = ["#"+''.join([random.choice('0123456789ABCDEF') for j in range(6)])
+             for i in range(sets)]
 for i in range(len(list)):
+    X=[]
+    Y=[]
+    Z=[]
     print("Shortest Path for  ",i,"th set :")
     print(list[i])
+    for j in range(len(list[i])):
+        X.append(list[i][j][0])
+        Y.append(list[i][j][1])
+        Z.append(list[i][j][2])
+        
+    ax.plot(X, Y, Z,color=colors[i])
+    
+
+ax.set_title('wireframe')
+plt.show()
